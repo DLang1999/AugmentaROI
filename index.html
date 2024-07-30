@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Augmenta ROI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #34495e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+        button {
+            background-color: #1abc9c;
+            color: #ecf0f1;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #16a085;
+        }
+        #result {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Augmenta ROI Calculator</h1>
+        <input type="number" id="productCost" placeholder="Product Cost ($/ac)" step="0.01">
+        <input type="number" id="savings" placeholder="% Savings" step="0.1">
+        <input type="number" id="applications" placeholder="Number of Applications">
+        <input type="number" id="acres" placeholder="Acres">
+        <button onclick="calculateROI()">Calculate ROI</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateROI() {
+            const productCost = parseFloat(document.getElementById('productCost').value);
+            const savings = parseFloat(document.getElementById('savings').value) / 100;
+            const applications = parseInt(document.getElementById('applications').value);
+            const acres = parseInt(document.getElementById('acres').value);
+
+            if (isNaN(productCost) || isNaN(savings) || isNaN(applications) || isNaN(acres)) {
+                document.getElementById('result').textContent = 'Please enter valid numbers for all fields.';
+                return;
+            }
+
+            const roi = productCost * savings * applications * acres;
+            document.getElementById('result').textContent = `ROI: $${roi.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
